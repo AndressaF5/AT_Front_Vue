@@ -2,10 +2,6 @@
     <div>
         <b-container>
             <b-row>
-                <h1>Título</h1>
-            </b-row>
-
-            <b-row>
                 <ListarHeroes :listaFavoritos="listaFavoritos"/>
             </b-row>
         </b-container>

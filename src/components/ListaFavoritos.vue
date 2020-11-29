@@ -1,17 +1,28 @@
 <template>
     <div id="container">
+        <b-row>
+            <h2>Lista de Favoritos</h2>
+        </b-row>
         <div class="cards">
             <b-card
-                :key="hero.id_Marvel" v-for="hero in allHeroesList"
-                :title="hero.name"
-                :img-src="hero.image"
-                :img-alt="hero.description"
-                :id="hero.id_Marvel"
+                :key="hero.idSuperHero" v-for="hero in allHeroesList"
+                :title="hero.nomeHero"
+                :img-src="hero.imagem"
+                :img-alt="hero.editora"
+                :id="hero.idSuperHero"
                 img-top
                 tag="article"
                 style="max-width: 15rem;"
                 class="mb-3 text-center"
             >
+                <b-card-text>
+                    <router-link tag="a" :to="{name: 'heroDetailListFav', params: {id: hero.idSuperHero , hero: hero}}">+ Detalhes</router-link>
+                </b-card-text>
+
+                <b-card-text>
+                    <router-link tag="a" :to="{name: 'editarHero', params: {id : hero.id , hero: hero}}">Editar heroi</router-link>
+                </b-card-text>
+
                 <b-button href="#" @click="removerDaLista(hero)" block variant="danger">Remover da lista</b-button>
 
             </b-card>
@@ -27,9 +38,12 @@
     export default {
         name: 'ListaFavoritos',
         computed: mapGetters(["allHeroesList"]),
-        methods: mapActions(["getListFavoritos"]),
+        methods: mapActions(["getListFavoritos"], ["removerHeroListaFavoritos"]),
         created() {
             this.getListFavoritos();
+        },
+        removerDaLista: function(hero){
+            this.removerHeroListaFavoritos(hero.id);
         }
     }
 </script>

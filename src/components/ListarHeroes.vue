@@ -5,14 +5,19 @@
                 :key="hero.id" v-for="hero in allHeroes"
                 :title="hero.name"
                 :img-src="hero.image.url"
-                :img-alt="Hello"
+                :img-alt="hero.name"
                 :id="hero.id"
                 img-top
                 tag="article"
                 style="max-width: 15rem;"
                 class="mb-3 text-center"
             >
-                <b-button href="#" @click="adicionarNaLista(hero)" block variant="dark">Adicionar na lista</b-button>
+
+                <b-card-text>
+                    <router-link tag="a" :to="{name: 'heroDetail', params: {id : hero.id , hero: hero}}"> + Detalhes</router-link>
+                </b-card-text>
+
+                <b-button href="#" v-on:click="adicionarNaLista(hero)" block variant="dark">Adicionar na lista</b-button>
 
             </b-card>
         </div>
@@ -27,10 +32,18 @@
     export default {
         name: 'ListarHeroes',
         computed: mapGetters(["allHeroes"]),
-        methods: mapActions(["getAllHeroes"]),
+        methods: {
+            ...mapActions([
+                "getAllHeroes",
+                "addHeroListaFav"]),
+            adicionarNaLista(hero) {
+                this.$store.dispatch('addHeroListaFav', {hero: hero});
+            },
+        },
         created() {
             this.getAllHeroes();
-        }
+        },
+        
     }
 </script>
 

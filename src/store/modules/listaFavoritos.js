@@ -18,6 +18,55 @@ const actions = {
             console.log(response.data)
             commit('getListFav', response.data)
         });
+    },
+    addHeroListaFav(hero) {
+        console.log("Hero", hero);
+        axios.post(
+            "http://localhost:57183/api/Heroes/adicionarHeroNaListaFavoritos", {
+                data: {
+                    "idSuperHero": hero.id,
+                    "nomeHero": hero.name,
+                    "imagem": hero.image.url,
+                    "inteligencia": hero.powerstats.intelligence,
+                    "forca": hero.powerstats.strength,
+                    "velocidade": hero.powerstats.speed,
+                    "durabilidade": hero.powerstats.durability,
+                    "poder": hero.powerstats.power,
+                    "combate": hero.powerstats.combat,
+                    "editora": hero.biography.publisher,
+                    "apelido": "",
+                    "identidadeSecreta": hero.biography.full-name
+               }
+            }
+        ).then((response) => {
+            console.log("Response", response)
+        });
+    },
+    removerHeroListaFavoritos(id){
+        axios.delete(
+            "http://localhost:57183/api/Heroes/deleteHeroListaFavoritos/" + id
+        ).then((response) => {
+            console.log("Response", response);
+        });
+    },
+    editarHeroListFav(id, hero){
+        axios.post(
+            "http://localhost:57183/api/Heroes/editarHeroListFav/" + id, {
+                data: {
+                    "NomeHero" : hero.nomeHero,
+                    "Inteligencia" : hero.inteligencia,
+                    "Forca" : hero.forca,
+                    "Velocidade" : hero.velocidade,
+                    "Durabilidade" : hero.durabilidade,
+                    "Poder" : hero.poder,
+                    "Combate" : hero.combate,
+                    "Editora" : hero.editora,
+                    "Apelido" : hero.apelido
+                }
+            }
+        ).then((response) => {
+            console.log("Response", response);
+        });
     }
 }
 
