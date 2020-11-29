@@ -1,6 +1,14 @@
 <template>
     <div>
-        <ListarHeroes />
+        <b-container>
+            <b-row>
+                <h1>Título</h1>
+            </b-row>
+
+            <b-row>
+                <ListarHeroes :listaFavoritos="listaFavoritos"/>
+            </b-row>
+        </b-container>
     </div>
 </template>
 
@@ -11,12 +19,29 @@
 
     export default {
         name: 'Home',
+        data() {
+            return {
+                listaFavoritos: []
+            }
+        },
+        computed: {
+            quantidadeNaListaFavoritos: function(){
+                return this.listaFavoritos.length;
+            }
+        },
         components: {
-            ListarHeroes
+            ListarHeroes,
         }
     }
 </script>
 
-<style scoped>
+<style>
+    .container {
+        font-family: 'Quicksand', sans-serif;
+        margin-top: 40px;
+    }
 
+    .row {
+        justify-content: center;
+    }
 </style>

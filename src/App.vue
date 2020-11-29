@@ -1,23 +1,20 @@
 <template>
-  <b-row>
-    <Home />
-  </b-row>
+  <div>
+    <Header />
+    <router-view />
+  </div>
 </template>
 
 <script>
   import 'bootstrap/dist/css/bootstrap.css'
   import 'bootstrap-vue/dist/bootstrap-vue.css'
   
-  import Home from './components/Home.vue'
+  import Header from './components/Header.vue'
 
 export default {
   name: 'App',
   components: {
-    Home
+    Header
   }
 }
 </script>
-
-<style>
-
-</style>

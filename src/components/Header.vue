@@ -1,22 +1,25 @@
 <template>
-    <b-nav-bar>
-        <b-nav-bar>
-            <b-nav-item>
-                <router-link to="/">Home</router-link>
-            </b-nav-item>
-        </b-nav-bar>
-    </b-nav-bar>
+  <b-navbar type="dark" variant="dark">
+      <b-navbar-nav>
+        <b-nav-item >
+          <router-link tag="nav" to="/">Home</router-link>
+        </b-nav-item>
+        <b-nav-item >
+          <router-link tag="nav" to="/listaFavoritos">Lista de Favoritos</router-link>
+        </b-nav-item>
+        <b-nav-form>
+          <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
+          <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+        </b-nav-form>
+      </b-navbar-nav>
+    </b-navbar>
 </template>
 
 <script>
-    import 'bootstrap/dist/css/bootstrap.css'
-    import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-    export default {
-
-    }
+export default {
+  name: 'Header',
+}
 </script>
 
-<style scoped>
-
+<style>
 </style>

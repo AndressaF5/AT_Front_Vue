@@ -1,22 +1,22 @@
 <template>
-    <b-row id="container">
+    <div id="container">
         <div class="cards">
             <b-card
-                :key="hero.id" v-for="hero in allHeroes"
+                :key="hero.id_Marvel" v-for="hero in allHeroesList"
                 :title="hero.name"
-                :img-src="hero.image.url"
-                :img-alt="Hello"
-                :id="hero.id"
+                :img-src="hero.image"
+                :img-alt="hero.description"
+                :id="hero.id_Marvel"
                 img-top
                 tag="article"
                 style="max-width: 15rem;"
                 class="mb-3 text-center"
             >
-                <b-button href="#" @click="adicionarNaLista(hero)" block variant="dark">Adicionar na lista</b-button>
+                <b-button href="#" @click="removerDaLista(hero)" block variant="danger">Remover da lista</b-button>
 
             </b-card>
         </div>
-    </b-row>
+    </div>
 </template>
 
 <script>
@@ -25,11 +25,11 @@
     import { mapActions, mapGetters } from 'vuex';
 
     export default {
-        name: 'ListarHeroes',
-        computed: mapGetters(["allHeroes"]),
-        methods: mapActions(["getAllHeroes"]),
+        name: 'ListaFavoritos',
+        computed: mapGetters(["allHeroesList"]),
+        methods: mapActions(["getListFavoritos"]),
         created() {
-            this.getAllHeroes();
+            this.getListFavoritos();
         }
     }
 </script>
