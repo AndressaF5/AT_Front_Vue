@@ -98,7 +98,7 @@
                     </div>
 
                     <div class="form-group">
-                    <button type="submit" class="btn btn-success">Finalizar edição</button>
+                    <button class="btn btn-success">Finalizar edição</button>
                 </div>
                 </form>
             </b-col>
@@ -115,7 +115,6 @@
         name: 'EditarHero',
         data() {
             return {
-                id: this.$route.params.id,
                 hero: this.$route.params.hero,
                 newHero: {
                     NomeHero: "",
@@ -131,10 +130,13 @@
                 },
             }
         },
-        methods: mapActions(["editarHeroListFav"]),
-        editarHero() {
-            this.editarHeroListFav(this.id, this.newHero);
-        }
+        methods: {
+            ...mapActions(["editarHeroListFav"]),
+            editarHero() {
+                console.log("EditarHero: Id = " + this.hero.idSuperHero, "NewHero = ", this.newHero)
+                this.editarHeroListFav(this.hero.idSuperHero, this.newHero);
+            }
+        } 
     }
 </script>
 

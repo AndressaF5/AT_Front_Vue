@@ -1,5 +1,5 @@
 <template>
-    <div id="container">
+    <b-row id="container">
         <b-row>
             <h2>Lista de Favoritos</h2>
         </b-row>
@@ -20,14 +20,14 @@
                 </b-card-text>
 
                 <b-card-text>
-                    <router-link tag="a" :to="{name: 'editarHero', params: {id : hero.id , hero: hero}}">Editar heroi</router-link>
+                    <router-link tag="a" :to="{name: 'editarHero', params: {hero: hero}}">Editar heroi</router-link>
                 </b-card-text>
 
-                <b-button href="#" @click="removerDaLista(hero)" block variant="danger">Remover da lista</b-button>
+                <b-button href="#" v-on:click="removerDaLista(hero.idSuperHero)" block variant="danger">Remover da lista</b-button>
 
             </b-card>
         </div>
-    </div>
+    </b-row>
 </template>
 
 <script>
@@ -38,13 +38,18 @@
     export default {
         name: 'ListaFavoritos',
         computed: mapGetters(["allHeroesList"]),
-        methods: mapActions(["getListFavoritos"], ["removerHeroListaFavoritos"]),
+        methods: {
+            ...mapActions(["getListFavoritos", "removerHeroListaFavoritos"]),
+            
+            removerDaLista(idSuperHero){
+                this.removerHeroListaFavoritos(idSuperHero);
+            },
+            
+        },
         created() {
             this.getListFavoritos();
         },
-        removerDaLista: function(hero){
-            this.removerHeroListaFavoritos(hero.id);
-        }
+        
     }
 </script>
 

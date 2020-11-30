@@ -37,7 +37,7 @@
                 "getAllHeroes",
                 "addHeroListaFav"]),
             adicionarNaLista(hero) {
-                this.$store.dispatch('addHeroListaFav', {hero: hero});
+                this.addHeroListaFav(hero);
             },
         },
         created() {

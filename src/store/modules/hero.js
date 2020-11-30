@@ -21,9 +21,9 @@ const actions = {
             ).then((response) => {
                 // coloca os dados dessa resposta dentro do mutations getAllHeroes
                 listHeroes.push(response.data);
-                console.log(listHeroes);
             });
         }
+
         commit('getAllHeroes', listHeroes);
     }
 }
