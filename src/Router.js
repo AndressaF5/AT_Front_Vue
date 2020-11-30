@@ -24,7 +24,7 @@ export default new VueRouter({
             component: HeroDetail
         },
         {
-            path: '/editarHero/:id',
+            path: '/editarHero',
             name: 'editarHero',
             component: EditarHero
         },

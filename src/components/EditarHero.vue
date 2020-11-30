@@ -115,6 +115,7 @@
         name: 'EditarHero',
         data() {
             return {
+                id: this.$route.parms.id,
                 hero: this.$route.params.hero,
                 newHero: {
                     NomeHero: "",
@@ -133,8 +134,8 @@
         methods: {
             ...mapActions(["editarHeroListFav"]),
             editarHero() {
-                console.log("EditarHero: Id = " + this.hero.idSuperHero, "NewHero = ", this.newHero)
-                this.editarHeroListFav(this.hero.idSuperHero, this.newHero);
+                console.log("EditarHero: IdSuperHero = " + this.id, "NewHero = " + this.newHero)
+                this.editarHeroListFav(this.id, this.newHero);
             }
         } 
     }

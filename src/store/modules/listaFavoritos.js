@@ -48,18 +48,18 @@ const actions = {
         });
     },
     editarHeroListFav( { state }, id, hero){
-        console.log("Store: id = " + id, "Hero = " + hero)
+        console.log("Store: IdSuperHero = " + hero.IdSuperHero, "Hero = " + hero)
         axios.post(
-            "http://localhost:57183/api/Heroes/editarHeroListFav/" + id, {
-                "NomeHero" : hero.nomeHero,
-                "Inteligencia" : hero.inteligencia,
-                "Forca" : hero.forca,
-                "Velocidade" : hero.velocidade,
-                "Durabilidade" : hero.durabilidade,
-                "Poder" : hero.poder,
-                "Combate" : hero.combate,
-                "Editora" : hero.editora,
-                "Apelido" : hero.apelido
+            "http://localhost:57183/api/Heroes/editarHeroListFav/?id=" + id, {
+                "NomeHero" : hero.NomeHero,
+                "Inteligencia" : hero.Inteligencia,
+                "Forca" : hero.Forca,
+                "Velocidade" : hero.Velocidade,
+                "Durabilidade" : hero.Durabilidade,
+                "Poder" : hero.Poder,
+                "Combate" : hero.Combate,
+                "Editora" : hero.Editora,
+                "Apelido" : hero.Apelido
             }
         ).then((response) => {
             console.log("Response", response + state);
