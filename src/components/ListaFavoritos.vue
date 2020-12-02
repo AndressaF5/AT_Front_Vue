@@ -1,8 +1,5 @@
 <template>
     <b-row id="container">
-        <b-row>
-            <h2>Lista de Favoritos</h2>
-        </b-row>
         <div class="cards">
             <b-card
                 :key="hero.idSuperHero" v-for="hero in allHeroesList"
@@ -16,7 +13,12 @@
                 class="mb-3 text-center"
             >
                 <b-card-text>
-                    <router-link tag="a" :to="{name: 'heroDetailListFav', params: {id: hero.idSuperHero , hero: hero}}">+ Detalhes</router-link>
+                    <p>Inteligência: {{hero.inteligencia}}</p>
+                    <p>Força: {{hero.forca}}</p>
+                    <p>Velocidade: {{hero.velocidade}}</p>
+                    <p>Durabilidade: {{hero.durabilidade}}</p>
+                    <p>Poder: {{hero.poder}}</p>
+                    <p>Combate: {{hero.combate}}</p>
                 </b-card-text>
 
                 <b-card-text>
@@ -49,7 +51,6 @@
         created() {
             this.getListFavoritos();
         },
-        
     }
 </script>
 
@@ -58,8 +59,14 @@
         display: flex;
         flex-wrap: inherit;
         justify-content: space-around;
+        padding: 50px;
     }
     .card:hover {
       transform: scale(1.05);
+    }
+
+    p{
+        text-align: left;
+        font-size: 25px;
     }
 </style>

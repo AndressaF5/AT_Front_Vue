@@ -15,7 +15,6 @@ const actions = {
         axios.get(
             "http://localhost:57183/api/Heroes/getListaHeroes"
         ).then((response) => {
-            console.log(response.data)
             commit('getListFav', response.data)
         });
     },
@@ -47,19 +46,18 @@ const actions = {
             commit("removerHeroList", id);
         });
     },
-    editarHeroListFav( { state }, id, hero){
-        console.log("Store: IdSuperHero = " + hero.IdSuperHero, "Hero = " + hero)
+    editarHeroListFav( { state }, hero){
         axios.post(
-            "http://localhost:57183/api/Heroes/editarHeroListFav/?id=" + id, {
-                "NomeHero" : hero.NomeHero,
-                "Inteligencia" : hero.Inteligencia,
-                "Forca" : hero.Forca,
-                "Velocidade" : hero.Velocidade,
-                "Durabilidade" : hero.Durabilidade,
-                "Poder" : hero.Poder,
-                "Combate" : hero.Combate,
-                "Editora" : hero.Editora,
-                "Apelido" : hero.Apelido
+            "http://localhost:57183/api/Heroes/editarHeroListFav/?idSuperHero=" + hero.IdSuperHero, {
+                "NomeHero" : hero.NomeHero == null || hero.NomeHero == "" ? null : hero.nomeHero,
+                "Inteligencia" : hero.Inteligencia == null || hero.Inteligencia == "" ? null : hero.Inteligencia,
+                "Forca" : hero.Forca == null || hero.Forca == "" ? null : hero.Forca,
+                "Velocidade" : hero.Velocidade == null || hero.Velocidade == "" ? null : hero.Velocidade,
+                "Durabilidade" : hero.Durabilidade == null || hero.Durabilidade == "" ? null : hero.Durabilidade,
+                "Poder" : hero.Poder == null || hero.Poder == "" ? null : hero.Poder,
+                "Combate" : hero.Combate == null || hero.Combate == "" ? null : hero.Combate,
+                "Editora" : hero.Editora == null || hero.Editora == "" ? null : hero.Editora,
+                "Apelido" : hero.Apelido == null || hero.Apelido == "" ? null : hero.Apelido
             }
         ).then((response) => {
             console.log("Response", response + state);
