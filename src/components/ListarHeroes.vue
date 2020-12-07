@@ -12,7 +12,6 @@
                 style="max-width: 15rem;"
                 class="mb-3 text-center"
             >
-
                 <b-card-text>
                     <router-link tag="a" :to="{name: 'heroDetail', params: {id : hero.id , hero: hero}}"> + Detalhes</router-link>
                 </b-card-text>
@@ -47,7 +46,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .cards {
         display: flex;
         flex-wrap: inherit;

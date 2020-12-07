@@ -3,19 +3,19 @@ import Home from './components/Home.vue';
 import ListaFavoritos from './components/ListaFavoritos.vue';
 import HeroDetail from './components/HeroDetail.vue'
 import EditarHero from './components/EditarHero.vue'
-import HeroDetailListFav from './components/HeroDetailListFav.vue'
+import Pesquisa from './components/Pesquisa.vue'
 
 export default new VueRouter({
     mode: 'history',
     routes: [
         {
             path: '/',
-            name: 'Home',
+            name: 'home',
             component: Home
         },
         {
             path: '/listaFavoritos',
-            name: 'ListaFavoritos',
+            name: 'listaFavoritos',
             component: ListaFavoritos
         },
         {
@@ -29,9 +29,9 @@ export default new VueRouter({
             component: EditarHero
         },
         {
-            path: '/heroDetailListFav',
-            name: 'heroDetailListFav',
-            component: HeroDetailListFav
+            path: '/pesquisar',
+            name: 'pesquisar',
+            component: Pesquisa
         }
     ]
 })

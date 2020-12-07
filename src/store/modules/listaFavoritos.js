@@ -4,9 +4,7 @@ const state = {
     heroesFav: []
 };
 
-// onde é acessado o state
 const getters = {
-    // tudo o que ele faz é olhar o state e devolver todos os heroes da lista
     allHeroesList: state => state.heroesFav,
 }
 
@@ -31,47 +29,49 @@ const actions = {
                 "poder": hero.powerstats.power,
                 "combate": hero.powerstats.combat,
                 "editora": hero.biography.publisher,
-                "apelido": "",
+                "apelido": hero.biography.aliases,
                 "identidadeSecreta": hero.biography.full-name
             }
         ).then((response) => {
-            console.log("Response", response + state)
+            if(response.status == 200){
+                alert("Heroi adicionado na lista de favoritos");
+            }
+            console.log("Response", response + state);
         });
     },
     removerHeroListaFavoritos({ commit }, id){
         axios.delete(
             "http://localhost:57183/api/Heroes/deleteHeroListaFavoritos/?id=" + id
         ).then((response) => {
-            console.log("Response", response);
-            commit("removerHeroList", id);
+            if(response.status == 200){
+                commit('removerHeroList', id);
+            }
         });
     },
     editarHeroListFav( { state }, hero){
         axios.post(
             "http://localhost:57183/api/Heroes/editarHeroListFav/?idSuperHero=" + hero.IdSuperHero, {
-                "NomeHero" : hero.NomeHero == null || hero.NomeHero == "" ? null : hero.nomeHero,
                 "Inteligencia" : hero.Inteligencia == null || hero.Inteligencia == "" ? null : hero.Inteligencia,
                 "Forca" : hero.Forca == null || hero.Forca == "" ? null : hero.Forca,
                 "Velocidade" : hero.Velocidade == null || hero.Velocidade == "" ? null : hero.Velocidade,
                 "Durabilidade" : hero.Durabilidade == null || hero.Durabilidade == "" ? null : hero.Durabilidade,
                 "Poder" : hero.Poder == null || hero.Poder == "" ? null : hero.Poder,
                 "Combate" : hero.Combate == null || hero.Combate == "" ? null : hero.Combate,
-                "Editora" : hero.Editora == null || hero.Editora == "" ? null : hero.Editora,
-                "Apelido" : hero.Apelido == null || hero.Apelido == "" ? null : hero.Apelido
             }
         ).then((response) => {
-            console.log("Response", response + state);
+            console.log("Response: ", response + "    State: "+  state);
+            return response;
+            
         });
     }
 }
 
 const mutations = {
     getListFav: (state, data) => (state.heroesFav = data),
-    removerHeroList: (state, id) => (state.heroesFav =  state.heroesFav.filter(hero => hero.id != id))
+    removerHeroList: (state, id) => (state.heroesFav = state.heroesFav.filter(hero => hero.id != id))
 }
 
 export default {
-    // listagem
     state,
     actions,
     getters,

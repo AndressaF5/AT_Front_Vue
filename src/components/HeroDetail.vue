@@ -14,6 +14,20 @@
                 <h3> <span>Combate: </span>{{ hero.powerstats.combat }}</h3>
                 <h3> <span>Editora: </span>{{ hero.biography.publisher }}</h3>
                 <h3> <span>Identidade Secreta: </span>{{ hero.biography.full-name }}</h3>
+
+                <br>
+
+                <b-col>
+                    <b-button href="#" v-on:click="adicionarNaLista(hero)" block variant="success">Adicionar na lista</b-button>
+                </b-col>
+
+                <br>
+
+                <b-col>
+                    <router-link :to="{name: 'home'}">
+                        <b-button block variant="dark">Voltar</b-button>
+                    </router-link>
+                </b-col>
             </b-col>
             
         </b-row>
@@ -21,17 +35,22 @@
 </template>
 
 <script>
-export default {
-  name: 'HeroDetail',
-  data(){
-    return { 
-        id: this.$route.params.id.name,
-        hero: this.$route.params.hero
-    }
-  }
-}
-</script>
+    import { mapActions } from 'vuex';
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+    export default {
+      name: 'HeroDetail',
+      methods: {
+          ...mapActions(["addHeroListaFav"]),
+          
+          adicionarNaLista(hero){
+            this.addHeroListaFav(hero);
+          },
+      },
+      data(){
+        return { 
+            id: this.$route.params.id.name,
+            hero: this.$route.params.hero
+        }
+      }
+    }
+</script>
