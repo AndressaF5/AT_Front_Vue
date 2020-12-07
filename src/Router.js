@@ -1,5 +1,6 @@
 import VueRouter from 'vue-router';
 import Home from './components/Home.vue';
+import ListarHeroes from './components/ListarHeroes'
 import ListaFavoritos from './components/ListaFavoritos.vue';
 import HeroDetail from './components/HeroDetail.vue'
 import EditarHero from './components/EditarHero.vue'
@@ -12,6 +13,11 @@ export default new VueRouter({
             path: '/',
             name: 'home',
             component: Home
+        },
+        {
+            path: '/listarHeroes',
+            name: 'listarHeroes',
+            component: ListarHeroes
         },
         {
             path: '/listaFavoritos',

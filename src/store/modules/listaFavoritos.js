@@ -33,9 +33,6 @@ const actions = {
                 "identidadeSecreta": hero.biography.full-name
             }
         ).then((response) => {
-            if(response.status == 200){
-                alert("Heroi adicionado na lista de favoritos");
-            }
             console.log("Response", response + state);
         });
     },
@@ -43,9 +40,8 @@ const actions = {
         axios.delete(
             "http://localhost:57183/api/Heroes/deleteHeroListaFavoritos/?id=" + id
         ).then((response) => {
-            if(response.status == 200){
-                commit('removerHeroList', id);
-            }
+            console.log(response)
+            commit('removerHeroList', id);
         });
     },
     editarHeroListFav( { commit }, hero){
@@ -59,17 +55,13 @@ const actions = {
                 "Combate" : hero.Combate == null || hero.Combate == "" ? null : hero.Combate,
             }
         ).then((response) => {
-            console.log("Commit: " + commit);
-            if(response.status == 200){
-                this.$router.push('/listaFavoritos')
-            }
+            console.log("Commit: " + commit, response);
         });
     }
 }
 
 const mutations = {
-    getListFav: (state, data) => (state.heroesFav = data),
-    removerHeroList: (state, id) => (state.heroesFav = state.heroesFav.filter(hero => hero.id !== id))
+    getListFav: (state, data) => (state.heroesFav = data)
 }
 
 export default {

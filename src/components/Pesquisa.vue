@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div>
-            <b-form-input v-model="nome" placeholder="Digite um nome"></b-form-input>
-            <b-form-select :disabled="nome !== null" v-model="gender" :options="options1"></b-form-select>
-            <b-form-select :disabled="nome !== null" v-model="editora" :options="options2"></b-form-select>
-            <b-button v-on:click="pesquisarHero()">Pesquisar</b-button>
+        <div id="divPesquisa">
+            <b-form-input class="form" :disabled="gender !== null || editora !== null" v-model="nome" placeholder="Digite um nome"></b-form-input>
+            <b-form-select class="form" :disabled="nome !== null" v-model="gender" :options="options1"></b-form-select>
+            <b-form-select class="form" :disabled="nome !== null" v-model="editora" :options="options2"></b-form-select>
+            <b-button class="form" v-on:click="pesquisarHero()">Pesquisar</b-button>
         </div>
-        <b-row>
+        <b-row style="padding-top: 40px">
             <div class="cards">
                 <b-card
                     :key="hero.id" v-for="hero in getListPesquisa"
@@ -67,6 +67,8 @@
                     this.nome = null
                 }else{
                     this.pesquisarHeroes(this.gender, this.editora)
+                    this.gender = null
+                    this.editora = null
                 }
             }
         },
@@ -79,6 +81,20 @@
         display: flex;
         flex-wrap: inherit;
         justify-content: space-around;
+    }
+
+    #divPesquisa{
+        padding-top: 20px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .form{
+        width: 500px;
+        margin-bottom: 12px;
     }
 
 </style>

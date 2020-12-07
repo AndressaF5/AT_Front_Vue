@@ -1,6 +1,14 @@
 <template>
   <b-row id="container">
     <div class="cards">
+      <b-row id="listaVazia" v-if="allHeroesList.length == 0">
+        <h3>Lista Vazia</h3>
+        <br>
+        <b-button href="#" v-on:click="paginaListarHeroes()">Listar herois</b-button>
+        <br>
+        <b-button href="#" v-on:click="paginaPesquisar()">Pesquisar herois</b-button>
+      </b-row>
+
       <b-card
         :key="hero.idSuperHero" v-for="hero in allHeroesList"
         :title="hero.nomeHero"
@@ -40,15 +48,23 @@
       name: 'ListaFavoritos',
       computed: mapGetters(["allHeroesList"]),
       methods: {
-          ...mapActions(["getListFavoritos", "removerHeroListaFavoritos"]),
+        ...mapActions(["getListFavoritos", "removerHeroListaFavoritos"]),
           
-          removerDaLista(idSuperHero){
-            this.removerHeroListaFavoritos(idSuperHero);
-          },
-          
+        removerDaLista(idSuperHero){
+          this.removerHeroListaFavoritos(idSuperHero);
+          window.setTimeout(() => {
+            this.getListFavoritos()
+          }, 1000);
+        },
+        paginaListarHeroes(){
+          this.$router.push('/listarHeroes')
+        },
+        paginaPesquisar(){
+          this.$router.push('/pesquisar');
+        }
       },
       created() {
-          this.getListFavoritos();
+        this.getListFavoritos();
       },
   }
 </script>
@@ -68,5 +84,9 @@
   p{
     text-align: left;
     font-size: 25px;
+  }
+
+  #listaVazia{
+    flex-direction: column;
   }
 </style>

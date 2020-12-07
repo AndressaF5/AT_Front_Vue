@@ -103,8 +103,7 @@
                 this.editarHeroListFav(this.newHero);
                 window.setTimeout(() => {
                     this.$router.push('/listaFavoritos')
-                }, 5000);
-                
+                }, 1000);
             }
         } 
     }
