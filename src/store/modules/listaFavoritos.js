@@ -48,7 +48,7 @@ const actions = {
             }
         });
     },
-    editarHeroListFav( { state }, hero){
+    editarHeroListFav( { commit }, hero){
         axios.post(
             "http://localhost:57183/api/Heroes/editarHeroListFav/?idSuperHero=" + hero.IdSuperHero, {
                 "Inteligencia" : hero.Inteligencia == null || hero.Inteligencia == "" ? null : hero.Inteligencia,
@@ -59,16 +59,17 @@ const actions = {
                 "Combate" : hero.Combate == null || hero.Combate == "" ? null : hero.Combate,
             }
         ).then((response) => {
-            console.log("Response: ", response + "    State: "+  state);
-            return response;
-            
+            console.log("Commit: " + commit);
+            if(response.status == 200){
+                this.$router.push('/listaFavoritos')
+            }
         });
     }
 }
 
 const mutations = {
     getListFav: (state, data) => (state.heroesFav = data),
-    removerHeroList: (state, id) => (state.heroesFav = state.heroesFav.filter(hero => hero.id != id))
+    removerHeroList: (state, id) => (state.heroesFav = state.heroesFav.filter(hero => hero.id !== id))
 }
 
 export default {
