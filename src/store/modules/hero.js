@@ -34,7 +34,6 @@ const actions = {
             axios.get(
                 "https://superheroapi.com/api.php/3682544188473097/" + idAleatorio
             ).then((response) => {
-                console.log(response)
                 // pesquisa pelo gender
                 if((gender != null) && (editora == null)){
                     if(response.data.appearance.gender == gender){

@@ -40,8 +40,7 @@ const actions = {
         axios.delete(
             "http://localhost:57183/api/Heroes/deleteHeroListaFavoritos/?id=" + id
         ).then((response) => {
-            console.log(response)
-            commit('removerHeroList', id);
+            console.log(commit + response)
         });
     },
     editarHeroListFav( { commit }, hero){
